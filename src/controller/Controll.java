@@ -28,7 +28,7 @@ public class Controll implements ActionListener {
 		case "addNewBook": {
 			String [] data= frame.newBook();
 			tree.inser(data[0], new Book(data[1], data[2], Integer.parseInt(data[3]), new Author(data[4], data[5]), Integer.parseInt(data[6]), Integer.parseInt(data[7])));
-			
+
 			break;
 		}
 		case "goToAddBook": {
@@ -78,14 +78,15 @@ public class Controll implements ActionListener {
 			break;
 		}
 		case "deleteUnities": {
-			String [] dataSearch= frame.returnSearchName();
-			frame.showSearchBook(tree.searchName(tree.unifiTitle(dataSearch[0]), Integer.parseInt(dataSearch[1]), frame.returnSectionalSearch_Delete()));
+			if(frame.getBookselected()!=null) {
+				tree.deleteUnities(frame.returnSectionalSearch_Delete(), frame.getBookselected(), Integer.parseInt(frame.amountToDelete()));
+				frame.showSearchBook(tree.searchCode(frame.getBookselected(), frame.returnSectionalSearch_Delete()));}
 			break;
 		}
 		case "deleteAll": {
 			if(frame.getBookselected()!=null) {
-			tree.delete(frame.returnSectionalSearch_Delete(), frame.getBookselected());
-			frame.showSearchBook(tree.searchCode(frame.getBookselected(), frame.returnSectionalSearch_Delete()));}
+				tree.delete(frame.returnSectionalSearch_Delete(), frame.getBookselected());
+				frame.showSearchBook(tree.searchCode(frame.getBookselected(), frame.returnSectionalSearch_Delete()));}
 			break;
 		}
 		}

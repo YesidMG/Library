@@ -131,6 +131,10 @@ public class MyFrame extends JFrame {
 		}
 	}
 	
+	public String amountToDelete() {
+		return search_Delete.getAmount().getText();
+	}
+	
 	public String [] returnSearchName() {
 		return new String [] {search_Delete.getNameBook().getText(),search_Delete.getVolume().getText()};
 	}

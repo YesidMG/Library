@@ -168,7 +168,7 @@ public class TreeAVL {
 			break;
 		}
 		}
-		
+
 	}
 
 	private NodoAVL deleteAVL(NodoAVL nodo, String code) {
@@ -219,6 +219,24 @@ public class TreeAVL {
 			return leftRotate(nodo);
 		}
 		return nodo;
+	}
+
+	public Book deleteUnities(String sectional,String code , int amount) {
+		
+		if(searchCode(code, sectional)==null) {
+			return searchCode(code, sectional);
+			
+		}else if(searchCode(code, sectional).getAmount()>amount) {
+			searchCode(code, sectional).setAmount(searchCode(code, sectional).getAmount()-amount);
+			return searchCode(code, sectional);
+		}
+		else if(searchCode(code, sectional).getAmount()==amount) {
+			delete(sectional, code);
+			return searchCode(code, sectional);
+		}else {
+			System.out.println("no");
+			return searchCode(code, sectional);
+		}
 	}
 
 
