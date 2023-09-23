@@ -49,6 +49,7 @@ public class MyFrame extends JFrame {
 		this.revalidate();
 	}
 	public void goToSearch_DeleteBook () {
+		bookselected=null;
 		actualPane=2;
 		pane.removeAll();
 		pane.add(search_Delete);
@@ -123,6 +124,11 @@ public class MyFrame extends JFrame {
 	}
 	public void showSearchBook(Book book) {
 		search_Delete.showBook(book);
+		if(book!=null) {
+			bookselected=book.getIsbnCode();
+		}else {
+			bookselected="";
+		}
 	}
 	
 	public String [] returnSearchName() {

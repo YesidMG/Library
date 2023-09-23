@@ -145,8 +145,30 @@ public class TreeAVL {
 
 	/**************************** ELIMINACION **********************************/
 
-	public void delete(String code) {
-		root = deleteAVL(root, code);
+	public void delete(String sectional,String code) {
+		switch (sectional) {
+		case "Center": {
+			center = deleteAVL(center, code);
+			break;
+		}
+		case "Medicine": {
+			medicine = deleteAVL(medicine, code);
+			break;
+		}
+		case "Faculty": {
+			facultad = deleteAVL(facultad, code);
+			break;
+		}
+		case "Agroindustrial": {
+			agroindustrial = deleteAVL(agroindustrial, code);
+			break;
+		}
+		case "Sogamoso sectional": {
+			sede_sogamoso = deleteAVL(sede_sogamoso, code);
+			break;
+		}
+		}
+		
 	}
 
 	private NodoAVL deleteAVL(NodoAVL nodo, String code) {

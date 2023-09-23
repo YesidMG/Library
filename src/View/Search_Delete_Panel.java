@@ -144,9 +144,15 @@ public class Search_Delete_Panel extends JPanel {
 		this.add(amount);
 
 		deleteButton = new MyButton("Delete",20 ,new Color(240,207,161), new Color(255,216,147), Color.BLACK , (int) (w*0.5), (int) (h*0.66), (int) (w*0.2), (int) (h*0.05)); 
+		deleteButton.addActionListener(listener);
+		deleteButton.setActionCommand("deleteUnities");
 		this.add(deleteButton);
 
+		
 		deleteAllButton = new MyButton("Delete all",20 ,new Color(240,207,161), new Color(255,216,147), Color.BLACK , (int) (w*0.3), (int) (h*0.74), (int) (w*0.4), (int) (h*0.06)); 
+		
+		deleteAllButton.addActionListener(listener);
+		deleteAllButton.setActionCommand("deleteAll");
 		this.add(deleteAllButton);
 	}
 

@@ -77,6 +77,17 @@ public class Controll implements ActionListener {
 			frame.showSearchBook(tree.searchName(tree.unifiTitle(dataSearch[0]), Integer.parseInt(dataSearch[1]), frame.returnSectionalSearch_Delete()));
 			break;
 		}
+		case "deleteUnities": {
+			String [] dataSearch= frame.returnSearchName();
+			frame.showSearchBook(tree.searchName(tree.unifiTitle(dataSearch[0]), Integer.parseInt(dataSearch[1]), frame.returnSectionalSearch_Delete()));
+			break;
+		}
+		case "deleteAll": {
+			if(frame.getBookselected()!=null) {
+			tree.delete(frame.returnSectionalSearch_Delete(), frame.getBookselected());
+			frame.showSearchBook(tree.searchCode(frame.getBookselected(), frame.returnSectionalSearch_Delete()));}
+			break;
+		}
 		}
 
 	}
