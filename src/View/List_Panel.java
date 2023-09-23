@@ -9,20 +9,16 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-
-import View.Viewelements.JtextPlaceHolder;
 import View.Viewelements.MyButton;
 import View.Viewelements.Pane;
 import View.Viewelements.PanelBook;
 import View.Viewelements.PrincipalScrollPane;
-import model.Author;
 import model.Book;
 
 public class List_Panel extends JPanel {
@@ -87,18 +83,6 @@ public class List_Panel extends JPanel {
 
 		pane= new Pane(0, 0, ((int) (w*0.25)-14), (int) (h*0.3),new Dimension((int) (w*0.25)-8, (int) (h*0.3)));
 		pane.setBackground(new Color(255,233,185));
-
-
-		//		for (int i = 0; i < 4; i++) {
-		//
-		//			pane.add(new PanelBook(0,(int) ((h*(0.1*i))),(int) (w*0.35), (int) (h*0.1),new Book("1", "Dracula de Bram Stocker", i, null, i, i), listener));
-		//			if(i >= 3) {
-		//				pane.setPreferredSize(new Dimension((int) (w*0.25)-8, (int) (h*0.3)+((int) (h*0.1)*(i-2))));
-		//			}
-		//			this.revalidate();
-		//			this.repaint();
-		//
-		//		}
 
 		scroll= new PrincipalScrollPane((int) (w*0.125), (int) (h*0.41), (int) (w*0.36), (int) (h*0.3),pane);
 		scroll.revalidate();
@@ -175,7 +159,6 @@ public class List_Panel extends JPanel {
 		}
 	}
 
-
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 =(Graphics2D)g;
 		super.paintComponent(g2);
@@ -192,10 +175,5 @@ public class List_Panel extends JPanel {
 	public JComboBox<String> getSectional() {
 		return sectional;
 	}
-
-
-
-
-
 
 }

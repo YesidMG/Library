@@ -4,11 +4,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-
 import model.Book;
 
 public class MyFrame extends JFrame {
@@ -165,8 +163,4 @@ public class MyFrame extends JFrame {
 	public void setBookselected(String bookselected) {
 		this.bookselected = bookselected;
 	}
-
-
-
-
 }

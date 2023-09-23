@@ -6,11 +6,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionListener;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-
 import View.Viewelements.MyButton;
 
 public class Menu_Panel extends JPanel {
@@ -58,10 +56,4 @@ public class Menu_Panel extends JPanel {
 		g2.setColor(Color.black);
 		g2.drawRect((int)(w*0.25), (int)(h*0.25), (int)(w*0.5), (int)(h*0.5));
 	}
-	
-	
-
-	
-
-
 }

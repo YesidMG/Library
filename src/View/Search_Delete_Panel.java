@@ -8,7 +8,6 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.util.Enumeration;
-
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.Icon;
@@ -18,7 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
-
 import View.Viewelements.JtextPlaceHolder;
 import View.Viewelements.MyButton;
 import model.Book;
@@ -148,9 +146,7 @@ public class Search_Delete_Panel extends JPanel {
 		deleteButton.setActionCommand("deleteUnities");
 		this.add(deleteButton);
 
-		
 		deleteAllButton = new MyButton("Delete all",20 ,new Color(240,207,161), new Color(255,216,147), Color.BLACK , (int) (w*0.3), (int) (h*0.74), (int) (w*0.4), (int) (h*0.06)); 
-		
 		deleteAllButton.addActionListener(listener);
 		deleteAllButton.setActionCommand("deleteAll");
 		this.add(deleteAllButton);
@@ -181,7 +177,7 @@ public class Search_Delete_Panel extends JPanel {
 			searchselected=comparator;
 		}
 	}
-	
+
 	public void clean() {
 		bookInfo.setText("");
 		nameBook.setText("");
@@ -189,7 +185,7 @@ public class Search_Delete_Panel extends JPanel {
 		isbnCode.setText("");
 		amount.setText("");
 	}
-	
+
 	public void changeCampus() {
 		String switcher = campus.getSelectedItem().toString();
 		switch (switcher) {
@@ -219,7 +215,7 @@ public class Search_Delete_Panel extends JPanel {
 		}
 		}
 	}
-	
+
 	public void showBook(Book book) {
 		if(book!=null) {
 			bookInfo.setText(book.toString());
@@ -274,10 +270,4 @@ public class Search_Delete_Panel extends JPanel {
 	public JRadioButton getSearchCode() {
 		return searchCode;
 	}
-
-
-
-
-
-
 }

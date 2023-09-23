@@ -21,8 +21,7 @@ public class JtextPlaceHolder extends JTextField implements FocusListener {
 		this.setBackground(background);
 		this.placeholder = placeholder;
 		this.showingPlaceholder = true;
-		this.addFocusListener(this);
-		
+		this.addFocusListener(this);	
 	}
 
 	@Override
