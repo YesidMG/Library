@@ -7,15 +7,11 @@ import java.awt.event.MouseEvent;
 
 public class MyButton extends JButton {
 
-	private Color background_1;
-	private Color background_2;
 	private Color borderColor;
 
 	public  MyButton (String text,int sizeFont, Color background_1,Color background_2, Color borderColor,int x, int y,int w,int h ) {
 		super(text);
 
-		this.background_1 = background_1;
-		this.background_2 = background_2;
 		this.borderColor = borderColor;
 		setFont(new Font("Times New Roman", Font.BOLD, sizeFont));
 		this.setBounds(x, y, w, h);

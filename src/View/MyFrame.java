@@ -2,17 +2,12 @@ package View;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 import model.Book;
 
@@ -103,17 +98,17 @@ public class MyFrame extends JFrame {
 		this.repaint();
 		this.revalidate();
 	}
-	
+
 	public void changeCampusList(){
 		list.changeCampus();
 	}
-	
+
 	public String[] newBook() {
 		return new String [] {agree.getSectional().getSelectedItem().toString(),agree.getCode().getText(),agree.getNameBook().getText(),
 				agree.getVolume().getText(),agree.getNameAuthor().getText(),agree.getLastNameAuthor().getText(), agree.getPages().getText(),
 				agree.getAmount().getText()};
 	}
-	
+
 	public void showList(ArrayList<Book> books, ActionListener listener) {
 		list.showList(books, listener);
 	}
@@ -123,11 +118,11 @@ public class MyFrame extends JFrame {
 	public void ShowSelectedBook(String book) {
 		list.showBook(book);
 	}
-	
+
 	public String returnSectionalSearch_Delete(){
 		return search_Delete.getSectional().getSelectedItem().toString();
 	}
-	
+
 	public String returnSearchCode() {
 		return search_Delete.getIsbnCode().getText();
 	}
@@ -139,46 +134,30 @@ public class MyFrame extends JFrame {
 			bookselected="";
 		}
 	}
-	
+
 	public String amountToDelete() {
 		return search_Delete.getAmount().getText();
 	}
-	
+
 	public String [] returnSearchName() {
 		return new String [] {search_Delete.getNameBook().getText(),search_Delete.getVolume().getText()};
 	}
 
 	public void showError(String message, boolean operation) {
-		JDialog dialog = new JDialog();
-		dialog.setLocationRelativeTo(null);
-        dialog.setModal(true); 
-        
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        
-        JLabel label = new JLabel(message);
-        
-        if(operation) {
-        	label.setForeground(Color.green);
-        }
-        else {
-        	label.setForeground(Color.red);
-        }
-        panel.add(label);
-     
-        JButton button = new JButton("Cerrar");
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dialog.dispose(); 
-            }
-        });
-        panel.add(button);
-        panel.add(new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, Integer.MAX_VALUE)));
-        dialog.add(panel);
-        dialog.setSize(200, 200);
-        dialog.setVisible(true);
+		if(operation) {
+			UIManager.put("OptionPane.messageForeground", Color.green);
+			JOptionPane.showMessageDialog(this,
+					message,
+					"Error",
+					JOptionPane.INFORMATION_MESSAGE);
+		}else {
+			UIManager.put("OptionPane.messageForeground", Color.RED);
+			JOptionPane.showMessageDialog(this,
+					message,
+					"Error",
+					JOptionPane.ERROR_MESSAGE);}
 	}
-	
+
 	public String getBookselected() {
 		return bookselected;
 	}
@@ -187,7 +166,7 @@ public class MyFrame extends JFrame {
 		this.bookselected = bookselected;
 	}
 
-	
-	
+
+
 
 }
