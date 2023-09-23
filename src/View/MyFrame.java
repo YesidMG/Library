@@ -6,9 +6,14 @@ import java.util.Vector;
 
 import javax.swing.JFrame;
 
+
+
 public class MyFrame extends JFrame {
 
 	private Panel_1 menu;
+	private Panel_2 agree;
+	private Panel_3 list;
+
 
 	public MyFrame(ActionListener listener) {
 		super("Matriz");
@@ -22,11 +27,19 @@ public class MyFrame extends JFrame {
 		this.repaint();
 	}
 
-	private void initComponets(ActionListener listener) {
-		menu = new Panel_1(0,0, this.getWidth(),this.getHeight(), listener);
-		this.add(menu);
-
-
+	private void initComponets( ActionListener listener) {
+//		menu = new Panel_1(0,0, this.getWidth(),this.getHeight(), listener);
+//		this.add(menu);
+		
+		//agree = new Panel_2(0,0, this.getWidth(),this.getHeight(), listener);	this.add(agree);
+		
+		list = new Panel_3(0,0, this.getWidth(),this.getHeight(), listener);
+		this.add(list);
+		
+		
 	}
+	
+	
+	
 
 }
