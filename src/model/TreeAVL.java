@@ -5,6 +5,8 @@ import java.util.Hashtable;
 import java.util.Stack;
 
 public class TreeAVL {
+	
+	String messageOperation;
 	ArrayList<Book> showBooks;
 	NodoAVL center;
 	NodoAVL medicine;
@@ -12,7 +14,7 @@ public class TreeAVL {
 	NodoAVL agroindustrial;
 	NodoAVL sede_sogamoso;
 
-	NodoAVL root;
+	
 
 
 
@@ -361,52 +363,8 @@ public class TreeAVL {
 	}
 	/****************************** SETTERS AND GETTERS *********************************/
 
-	public NodoAVL getRoot() {
-		return root;
-	}
+	
 
-	public void setRoot(NodoAVL root) {
-		this.root = root;
-	}
-
-	public NodoAVL getCenter() {
-		return center;
-	}
-
-	public void setCenter(NodoAVL center) {
-		this.center = center;
-	}
-
-	public NodoAVL getMedicine() {
-		return medicine;
-	}
-
-	public void setMedicine(NodoAVL medicine) {
-		this.medicine = medicine;
-	}
-
-	public NodoAVL getFacultad() {
-		return facultad;
-	}
-
-	public void setFacultad(NodoAVL facultad) {
-		this.facultad = facultad;
-	}
-
-	public NodoAVL getAgroindustrial() {
-		return agroindustrial;
-	}
-
-	public void setAgroindustrial(NodoAVL agroindustrial) {
-		this.agroindustrial = agroindustrial;
-	}
-
-	public NodoAVL getSede_sogamoso() {
-		return sede_sogamoso;
-	}
-
-	public void setSede_sogamoso(NodoAVL sede_sogamoso) {
-		this.sede_sogamoso = sede_sogamoso;
-	}
+	
 
 }

@@ -1,10 +1,17 @@
 package View;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import model.Book;
 
@@ -21,6 +28,7 @@ public class MyFrame extends JFrame {
 		super("Matriz");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(700, 700);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.setLayout(null);
 		this.setResizable(false);
@@ -139,6 +147,33 @@ public class MyFrame extends JFrame {
 		return new String [] {search_Delete.getNameBook().getText(),search_Delete.getVolume().getText()};
 	}
 
+	public void showError(String message) {
+		JDialog dialog = new JDialog();
+		dialog.setLocationRelativeTo(null);
+        dialog.setModal(true); 
+        
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        
+        JLabel label = new JLabel(message);
+        panel.add(label);
+//        dialog.add(label);
+
+     
+        JButton button = new JButton("Cerrar");
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dialog.dispose(); 
+            }
+        });
+        panel.add(button);
+        panel.add(new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, Integer.MAX_VALUE)));
+//        dialog.add(button);
+        dialog.add(panel);
+        dialog.setSize(200, 200);
+        dialog.setVisible(true);
+	}
+	
 	public String getBookselected() {
 		return bookselected;
 	}

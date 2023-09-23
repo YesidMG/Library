@@ -23,6 +23,7 @@ public class Controll implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
+		try {
 		String source = event.getActionCommand();
 		switch (source) {
 		case "addNewBook": {
@@ -89,6 +90,9 @@ public class Controll implements ActionListener {
 				frame.showSearchBook(tree.searchCode(frame.getBookselected(), frame.returnSectionalSearch_Delete()));}
 			break;
 		}
+		}
+		}catch (Exception e) {
+			frame.showError("Error en los datos ingresados");
 		}
 
 	}
