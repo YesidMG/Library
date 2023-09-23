@@ -7,6 +7,7 @@ import java.util.Stack;
 public class TreeAVL {
 	
 	String messageOperation;
+	boolean exit;
 	ArrayList<Book> showBooks;
 	NodoAVL center;
 	NodoAVL medicine;
@@ -46,11 +47,14 @@ public class TreeAVL {
 
 	private NodoAVL insertrAVL(NodoAVL nodo, Book book, String nodeName) {
 		if (nodo == null) {
+			messageOperation="successful operation";
+			exit=true;
 			return (new NodoAVL(book));
 		}
-		//		Book existinName
 		Book compare= searchName(book.getTitle(),book.getVolume(),nodeName);
 		if(compare!=null && !compare.getIsbnCode().equals(book.getIsbnCode())) {
+			messageOperation="Same book with different code detected, cannot be inserted";
+			exit=false;
 			return nodo;
 		}
 
@@ -62,7 +66,12 @@ public class TreeAVL {
 			nodo.setRight(insertrAVL(nodo.getRight(), book, nodeName));
 		}else {
 			if(comparteToBook(book, nodo.getBook())) {
+				messageOperation="successful operation";
+				exit=true;
 				nodo.getBook().setAmount(nodo.getBook().getAmount()+book.getAmount());
+			}else {
+				messageOperation="The code cannot be repeated for different books";
+				exit=false;
 			}
 			return nodo;
 		}
@@ -84,6 +93,8 @@ public class TreeAVL {
 			nodo.setRight(rightRotate(nodo.getRight()));
 			return leftRotate(nodo);
 		}
+		messageOperation="successful operation";
+		exit=true;
 		return nodo;
 	}
 
@@ -226,17 +237,24 @@ public class TreeAVL {
 	public Book deleteUnities(String sectional,String code , int amount) {
 		
 		if(searchCode(code, sectional)==null) {
+			messageOperation="no item selected";
+			exit=false;
 			return searchCode(code, sectional);
 			
-		}else if(searchCode(code, sectional).getAmount()>amount) {
+		}else if(searchCode(code, sectional).getAmount()>amount && amount>0) {
 			searchCode(code, sectional).setAmount(searchCode(code, sectional).getAmount()-amount);
+			messageOperation="successful operation";
+			exit=true;
 			return searchCode(code, sectional);
 		}
 		else if(searchCode(code, sectional).getAmount()==amount) {
 			delete(sectional, code);
+			messageOperation="successful operation";
+			exit=true;
 			return searchCode(code, sectional);
 		}else {
-			System.out.println("no");
+			messageOperation="invalid amount";
+			exit=false;
 			return searchCode(code, sectional);
 		}
 	}
@@ -361,7 +379,38 @@ public class TreeAVL {
 			return false;
 		}
 	}
+	
+	public boolean isNegative(int num){
+		return num <= 0? true:false;
+	} 
+	
+	public boolean completeData(String [] data) {
+		boolean operationValue=true;
+		
+		if(data[1].equals("Ex 000-000-00000-0-0") || data[1].replaceAll("\\s", "").equals("")) {
+			operationValue=false;
+		}
+		if(data[2].equals("Here the name of the book") || data[2].replaceAll("\\s", "").equals("")) {
+			operationValue=false;
+		}
+		if(data[4].equals("Name or names") || data[4].replaceAll("\\s", "").equals("")) {
+			operationValue=false;
+		}
+		if(data[5].equals("Surname or surnames") || data[5].replaceAll("\\s", "").equals("")) {
+			operationValue=false;
+		}
+		
+		return operationValue;
+	}
 	/****************************** SETTERS AND GETTERS *********************************/
+
+	public String getMessageOperation() {
+		return messageOperation;
+	}
+
+	public boolean getExit() {
+		return exit;
+	}
 
 	
 

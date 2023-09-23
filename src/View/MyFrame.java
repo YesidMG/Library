@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -147,7 +148,7 @@ public class MyFrame extends JFrame {
 		return new String [] {search_Delete.getNameBook().getText(),search_Delete.getVolume().getText()};
 	}
 
-	public void showError(String message) {
+	public void showError(String message, boolean operation) {
 		JDialog dialog = new JDialog();
 		dialog.setLocationRelativeTo(null);
         dialog.setModal(true); 
@@ -156,9 +157,14 @@ public class MyFrame extends JFrame {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         
         JLabel label = new JLabel(message);
+        
+        if(operation) {
+        	label.setForeground(Color.green);
+        }
+        else {
+        	label.setForeground(Color.red);
+        }
         panel.add(label);
-//        dialog.add(label);
-
      
         JButton button = new JButton("Cerrar");
         button.addActionListener(new ActionListener() {
@@ -168,7 +174,6 @@ public class MyFrame extends JFrame {
         });
         panel.add(button);
         panel.add(new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, Integer.MAX_VALUE)));
-//        dialog.add(button);
         dialog.add(panel);
         dialog.setSize(200, 200);
         dialog.setVisible(true);

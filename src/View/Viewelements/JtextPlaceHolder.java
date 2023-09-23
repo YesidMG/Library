@@ -50,7 +50,7 @@ public class JtextPlaceHolder extends JTextField implements FocusListener {
 		if (this.showingPlaceholder) {
 			g.setColor(Color.GRAY);
 			this.setForeground(Color.GRAY);
-			this.setText("  "+this.placeholder);
+			this.setText(this.placeholder);
 		}    
 	}
 }
