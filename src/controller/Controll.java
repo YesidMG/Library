@@ -29,11 +29,6 @@ public class Controll implements ActionListener {
 			String [] data= frame.newBook();
 			tree.inser(data[0], new Book(data[1], data[2], Integer.parseInt(data[3]), new Author(data[4], data[5]), Integer.parseInt(data[6]), Integer.parseInt(data[7])));
 			
-//			ArrayList<Book>a= tree.inOrder(data[0]);
-//			for(Book b:a) {
-//				System.out.println(b.toString());
-//			}
-			
 			break;
 		}
 		case "goToAddBook": {
@@ -74,12 +69,12 @@ public class Controll implements ActionListener {
 			break;
 		}
 		case "searchByCode": {
-			System.out.println("code");
+			frame.showSearchBook(tree.searchCode(frame.returnSearchCode(), frame.returnSectionalSearch_Delete()));
 			break;
 		}
 		case "searchByName": {
-			
-			System.out.println("name");
+			String [] dataSearch= frame.returnSearchName();
+			frame.showSearchBook(tree.searchName(tree.unifiTitle(dataSearch[0]), Integer.parseInt(dataSearch[1]), frame.returnSectionalSearch_Delete()));
 			break;
 		}
 		}

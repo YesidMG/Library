@@ -47,8 +47,8 @@ public class TreeAVL {
 			return (new NodoAVL(book));
 		}
 		//		Book existinName
-		Book compare= searchName(book.getTitle(),nodeName);
-		if(compare!=null && compare.getVolume()== book.getVolume()&&!compare.getIsbnCode().equals(book.getIsbnCode())) {
+		Book compare= searchName(book.getTitle(),book.getVolume(),nodeName);
+		if(compare!=null && !compare.getIsbnCode().equals(book.getIsbnCode())) {
 			return nodo;
 		}
 
@@ -121,17 +121,17 @@ public class TreeAVL {
 		}
 	}
 
-	public Book searchName(String name, String node) {
-		return searchNameAVL(node, name);
+	public Book searchName(String name,int volume, String node) {
+		return searchNameAVL(node, name, volume);
 	}
-	private Book searchNameAVL(String node, String nameBook) {
+	private Book searchNameAVL(String node, String nameBook, int volume) {
 		ArrayList<Book> search= inOrder(node);
 		if(search==null) {
 			return null;
 		}
 		else {
 			for(Book book:search) {
-				if(book.getTitle().equals(nameBook)) {
+				if(unifiTitle(book.getTitle()).equals(unifiTitle(nameBook))&& book.getVolume()==volume) {
 					return book;
 				}	
 			}

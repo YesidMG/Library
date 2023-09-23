@@ -21,6 +21,7 @@ import javax.swing.JTextArea;
 
 import View.Viewelements.JtextPlaceHolder;
 import View.Viewelements.MyButton;
+import model.Book;
 
 public class Search_Delete_Panel extends JPanel {
 
@@ -212,6 +213,14 @@ public class Search_Delete_Panel extends JPanel {
 		}
 		}
 	}
+	
+	public void showBook(Book book) {
+		if(book!=null) {
+			bookInfo.setText(book.toString());
+		}else {
+			bookInfo.setText("book not found");
+		}
+	}
 
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 =(Graphics2D)g;
@@ -226,6 +235,38 @@ public class Search_Delete_Panel extends JPanel {
 		g2.setColor(Color.black);
 		g2.drawRect((int)(w*0.1), (int)(h*0.15), (int)(w*0.8), (int)(h*0.7));
 
+	}
+
+	public JtextPlaceHolder getNameBook() {
+		return nameBook;
+	}
+
+	public JtextPlaceHolder getVolume() {
+		return volume;
+	}
+
+	public JtextPlaceHolder getIsbnCode() {
+		return isbnCode;
+	}
+
+	public JtextPlaceHolder getAmount() {
+		return amount;
+	}
+
+	public JComboBox<String> getCampus() {
+		return campus;
+	}
+
+	public JComboBox<String> getSectional() {
+		return sectional;
+	}
+
+	public JRadioButton getSearchName() {
+		return searchName;
+	}
+
+	public JRadioButton getSearchCode() {
+		return searchCode;
 	}
 
 

@@ -115,11 +115,19 @@ public class MyFrame extends JFrame {
 	}
 	
 	public String returnSectionalSearch_Delete(){
-		return list.getSectional().getSelectedItem().toString();
+		return search_Delete.getSectional().getSelectedItem().toString();
 	}
 	
+	public String returnSearchCode() {
+		return search_Delete.getIsbnCode().getText();
+	}
+	public void showSearchBook(Book book) {
+		search_Delete.showBook(book);
+	}
 	
-	
+	public String [] returnSearchName() {
+		return new String [] {search_Delete.getNameBook().getText(),search_Delete.getVolume().getText()};
+	}
 
 	public String getBookselected() {
 		return bookselected;
