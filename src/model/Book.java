@@ -68,7 +68,12 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [isbnCode=" + isbnCode +"amount:"+amount;
+		return "ISBN CODE: "+isbnCode+
+				"\nTITLE: "+title+
+				"\nVOLUME: "+volume+
+				"\nATHOR: "+author.getName()+" "+author.getLastName()+
+				"\nNUM PAGES: "+pages+
+				"\nNUMBER OF BOOK AVIABLE: "+amount;
 	}
 	
 	

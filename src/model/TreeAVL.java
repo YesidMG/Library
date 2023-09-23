@@ -1,29 +1,67 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Stack;
+
 public class TreeAVL {
+	ArrayList<Book> showBooks;
+	NodoAVL center;
+	NodoAVL medicine;
+	NodoAVL facultad;
+	NodoAVL agroindustrial;
+	NodoAVL sede_sogamoso;
+
 	NodoAVL root;
 
-	public void clearAll() {
-		root = null;
-	}
+
 
 	/******************************* INSERSION **********************************/
-	public void inser(Book book) {
-		root = insertrAVL(root, book);
+	public void inser(String sectional, Book book) {
+		switch (sectional) {
+		case "Center": {
+			center = insertrAVL(center, book, "Center");
+			break;
+		}
+		case "Medicine": {
+			medicine = insertrAVL(medicine, book,"Medicine");
+			break;
+		}
+		case "Faculty": {
+			facultad = insertrAVL(facultad, book, "Faculty");
+			break;
+		}
+		case "Agroindustrial": {
+			agroindustrial = insertrAVL(agroindustrial, book, "Agroindustrial");
+			break;
+		}
+		case "Sogamoso sectional": {
+			sede_sogamoso = insertrAVL(sede_sogamoso, book,"Sogamoso sectional");
+			break;
+		}
+		}
 	}
 
-	private NodoAVL insertrAVL(NodoAVL nodo, Book book) {
+	private NodoAVL insertrAVL(NodoAVL nodo, Book book, String nodeName) {
 		if (nodo == null) {
 			return (new NodoAVL(book));
 		}
+		//		Book existinName
+		Book compare= searchName(book.getTitle(),nodeName);
+		if(compare!=null && compare.getVolume()== book.getVolume()&&!compare.getIsbnCode().equals(book.getIsbnCode())) {
+			return nodo;
+		}
+
 		int code=toNumber(book.getIsbnCode());
 
 		if (code < toNumber(nodo.getBook().getIsbnCode())) {
-			nodo.setLeft(insertrAVL(nodo.getLeft(), book));
+			nodo.setLeft(insertrAVL(nodo.getLeft(), book, nodeName));
 		}else if (code > toNumber(nodo.getBook().getIsbnCode())) {
-			nodo.setRight(insertrAVL(nodo.getRight(), book));
+			nodo.setRight(insertrAVL(nodo.getRight(), book, nodeName));
 		}else {
-			nodo.getBook().setAmount(nodo.getBook().getAmount()+1);
+			if(comparteToBook(book, nodo.getBook())) {
+				nodo.getBook().setAmount(nodo.getBook().getAmount()+book.getAmount());
+			}
 			return nodo;
 		}
 
@@ -50,28 +88,59 @@ public class TreeAVL {
 
 	/******************************* BUSQUEDA **********************************/
 
-
-	//---búsqueda de un elemento en el AVL
-	public void buscar(String code) {
-		if(BuscaEnAVL(root, code)) {
-			System.out.println("Existe");
-		}else {
-			System.out.println("No Existe");
+	public Book searchCode(String code, String node) {
+		switch (node) {
+		case "Center": {
+			return searchCodeAVL(center, code);
+		}
+		case "Medicine": {
+			return searchCodeAVL(medicine, code);			
+		}
+		case "Faculty": {
+			return searchCodeAVL(facultad, code);		
+		}
+		case "Agroindustrial": {
+			return searchCodeAVL(agroindustrial, code);
+		}
+		case "Sogamoso sectional": {
+			return searchCodeAVL(sede_sogamoso, code);
+		}
+		default:
+			return null;
 		}
 	}
-
-	//Búsqueda recursiva en un AVL
-	private boolean BuscaEnAVL(NodoAVL nodo, String code) {
+	private Book searchCodeAVL(NodoAVL nodo, String code) {
 		if (nodo == null) {
-			return false;
+			return null;
 		} else if (toNumber(code) == toNumber(nodo.getBook().getIsbnCode())) {
-			return true;
+			return nodo.getBook();
 		} else if (toNumber(code) < toNumber(nodo.getBook().getIsbnCode())) {
-			return BuscaEnAVL(nodo.getLeft(), code);
+			return searchCodeAVL(nodo.getLeft(), code);
 		} else {
-			return BuscaEnAVL(nodo.getRight(), code);
+			return searchCodeAVL(nodo.getRight(), code);
 		}
 	}
+
+	public Book searchName(String name, String node) {
+		return searchNameAVL(node, name);
+	}
+	private Book searchNameAVL(String node, String nameBook) {
+		ArrayList<Book> search= inOrder(node);
+		if(search==null) {
+			return null;
+		}
+		else {
+			for(Book book:search) {
+				if(book.getTitle().equals(nameBook)) {
+					return book;
+				}	
+			}
+			return null;
+		}
+
+	}
+
+
 
 
 	/**************************** ELIMINACION **********************************/
@@ -162,56 +231,46 @@ public class TreeAVL {
 
 	/******************************** MOSTRAR **********************************/
 
-	public void showTreeAVL() {
-		System.out.println("Arbol AVL");
-		showTree(root, 0);
-	}
-
-	private void showTree(NodoAVL nodo, int depth) {
-		if (nodo.getRight() != null) {
-			showTree(nodo.getRight(), depth + 1);
+	public ArrayList<Book> inOrder(String tree) {
+		ArrayList<Book> resultado = new ArrayList<>();
+		NodoAVL showNode=null;
+		switch (tree) {
+		case "Center": {
+			showNode=center;
+			break;
 		}
-		for (int i = 0; i < depth; i++) {
-			System.out.print("    ");
+		case "Medicine": {
+			showNode=medicine;
+			break;
 		}
-		System.out.println("(" + nodo.getBook().toString() + ")");
-		if (nodo.getLeft() != null) {
-			showTree(nodo.getLeft(), depth + 1);
+		case "Faculty": {
+			showNode=facultad;
+			break;
 		}
-	}
-
-	public String inOrder(NodoAVL tree) {
-		if(tree==null) {
-			return "";
+		case "Agroindustrial": {
+			showNode=agroindustrial;
+			break;
 		}
-		String resultado = "";
-		resultado += inOrder(tree.getLeft());
-		resultado += tree.getBook().toString() + ", ";
-		resultado += inOrder(tree.getRight());
+		case "Sogamoso sectional": {
+			showNode=sede_sogamoso;
+			break;
+		}
+		}
+		inOrder(showNode, resultado);
 		return resultado;
 	}
 
-	public String preOrder(NodoAVL tree) {
-		if(tree==null) {
-			return "";
+	private void inOrder(NodoAVL tree, ArrayList<Book> resultado) {
+		if (tree != null) {
+			inOrder(tree.getLeft(), resultado);
+			resultado.add(tree.getBook());
+			inOrder(tree.getRight(), resultado);
 		}
-		String resultado = "";
-		resultado += tree.getBook().toString() + ", ";
-		resultado += preOrder(tree.getLeft());
-		resultado += preOrder(tree.getRight());
-		return resultado;
+		else {
+			resultado=null;
+		}
 	}
 
-	public String postOrder(NodoAVL tree) {
-		if(tree==null) {
-			return "";
-		}
-		String resultado = "";
-		resultado += postOrder(tree.getLeft());
-		resultado += postOrder(tree.getRight());
-		resultado += tree.getBook().toString() + ", ";
-		return resultado;
-	}
 
 	/****************************** OTROS METODOS *********************************/
 
@@ -219,6 +278,13 @@ public class TreeAVL {
 		String num = code.replace("-", "");
 		return Integer.parseInt(num);
 	}
+
+	public String unifiTitle(String title) {
+		return title.replaceAll("\\s","").toLowerCase();
+	}
+
+
+
 
 	/****************************** AUXILIARES *********************************/
 
@@ -245,6 +311,16 @@ public class TreeAVL {
 		return current;
 	}
 
+	public boolean comparteToBook(Book book1, Book book2) {
+		if(book1.getIsbnCode().equals(book2.getIsbnCode()) && book1.getTitle().equals(book2.getTitle()) && book1.getVolume()==book2.getVolume()
+				&& book1.getPages()==book2.getPages() && book1.getAuthor().getName().equals(book2.getAuthor().getName()) && book2.getAuthor().getLastName().equals(book2.getAuthor().getLastName())) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	/****************************** SETTERS AND GETTERS *********************************/
+
 	public NodoAVL getRoot() {
 		return root;
 	}
@@ -252,4 +328,45 @@ public class TreeAVL {
 	public void setRoot(NodoAVL root) {
 		this.root = root;
 	}
+
+	public NodoAVL getCenter() {
+		return center;
+	}
+
+	public void setCenter(NodoAVL center) {
+		this.center = center;
+	}
+
+	public NodoAVL getMedicine() {
+		return medicine;
+	}
+
+	public void setMedicine(NodoAVL medicine) {
+		this.medicine = medicine;
+	}
+
+	public NodoAVL getFacultad() {
+		return facultad;
+	}
+
+	public void setFacultad(NodoAVL facultad) {
+		this.facultad = facultad;
+	}
+
+	public NodoAVL getAgroindustrial() {
+		return agroindustrial;
+	}
+
+	public void setAgroindustrial(NodoAVL agroindustrial) {
+		this.agroindustrial = agroindustrial;
+	}
+
+	public NodoAVL getSede_sogamoso() {
+		return sede_sogamoso;
+	}
+
+	public void setSede_sogamoso(NodoAVL sede_sogamoso) {
+		this.sede_sogamoso = sede_sogamoso;
+	}
+
 }
