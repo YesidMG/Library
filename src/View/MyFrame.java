@@ -13,7 +13,8 @@ public class MyFrame extends JFrame {
 	private Panel_1 menu;
 	private Panel_2 agree;
 	private Panel_3 list;
-
+	private Panel_4 search;
+	private Panel_5 delete;
 
 	public MyFrame(ActionListener listener) {
 		super("Matriz");
@@ -31,12 +32,17 @@ public class MyFrame extends JFrame {
 //		menu = new Panel_1(0,0, this.getWidth(),this.getHeight(), listener);
 //		this.add(menu);
 		
-		//agree = new Panel_2(0,0, this.getWidth(),this.getHeight(), listener);	this.add(agree);
+//		agree = new Panel_2(0,0, this.getWidth(),this.getHeight(), listener);
+//		this.add(agree);
 		
-		list = new Panel_3(0,0, this.getWidth(),this.getHeight(), listener);
-		this.add(list);
+//		list = new Panel_3(0,0, this.getWidth(),this.getHeight(), listener);
+//		this.add(list);
 		
+//		search = new Panel_4(0,0, this.getWidth(),this.getHeight(), listener);
+//		this.add(search);
 		
+		delete = new Panel_5(0,0, this.getWidth(),this.getHeight(), listener);
+		this.add(delete);
 	}
 	
 	
