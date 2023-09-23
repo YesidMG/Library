@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package View.Viewelements;
 
 import java.awt.Dimension;
@@ -13,3 +14,20 @@ public class Pane extends JPanel {
 		this.setLayout(null);
 	}
 }
+=======
+package View.Viewelements;
+
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+
+public class Pane extends JPanel {
+
+	
+	public Pane( int x,int y,int width,int heigth, Dimension dimension) {
+		this.setBounds(0,0, width, heigth);
+		this.setPreferredSize(dimension);
+		this.setLayout(null);
+	}
+}
+>>>>>>> main
